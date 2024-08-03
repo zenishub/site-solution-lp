@@ -21,7 +21,7 @@ export default defineComponent({
   font-weight: bold;
   background-color: #FB9130;
   color: aliceblue;
-  width: 400px;
+  width: 50%;
   display: block;
   text-align: center;
   margin: auto;
@@ -38,5 +38,14 @@ export default defineComponent({
 .caret-right{
   position: relative;
   left: 3rem;
+}
+
+@media (max-width: 768px) {
+  * {
+    font-size: 1.6rem;
+  }
+  .cta-button {
+    width: 80%;
+  }
 }
 </style>
