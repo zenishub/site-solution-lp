@@ -14,6 +14,7 @@
   </div>
   <div v-else>
     <img src="../public/fv-pc.png" alt="" width="100%">
+    <ctaButton class="cta-first"/>
     <img src="../public/onayami-pc.png" alt="" width="100%">
     <img src="../public/reason1-pc.png" alt="" width="100%">
     <img src="../public/reason2-pc.png" alt="" width="100%">
@@ -26,8 +27,12 @@
 
 <script lang="ts">
 import { ref, onMounted, onBeforeUnmount, defineComponent } from 'vue';
+import ctaButton from './components/ctaButton.vue'
 
 export default defineComponent({
+  components: {
+    ctaButton
+  },
   setup() {
     const isMobile = ref<boolean>(window.innerWidth <= 768);
 
@@ -49,3 +54,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+.cta-first {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: -105px;
+}
+</style>
