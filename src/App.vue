@@ -9,7 +9,7 @@
     <img src="../public/reason1-sp.png" alt="" width="100%">
     <img src="../public/reason2-sp.png" alt="" width="100%">
     <img src="../public/reason3-sp.png" alt="" width="100%">
-    <img src="../public/table.png" alt="" width="100%">
+    <tableSection/>
     <img ref="ctaSpButtonBackEl" src="../public/cta-btn-sp.png" alt="" width="100%">
     <ctaButton ref="ctaSpButtonEl" :style="{ marginTop: ctaSpMarginTop + 'px' }" class="cta-first"/>
     <img src="../public/flow-sp.png" alt="" width="100%">
@@ -21,7 +21,7 @@
     <img src="../public/reason1-pc.png" alt="" width="100%">
     <img src="../public/reason2-pc.png" alt="" width="100%">
     <img src="../public/reason3-pc.png" alt="" width="100%">
-    <img src="../public/table.png" alt="" width="100%">
+    <tableSection/>
     <img ref="ctaPcButtonBackEl" src="../public/cta-btn-pc.png" alt="" width="100%">
     <ctaButton ref="ctaPcButtonEl" :style="{ marginTop: ctaPcMarginTop + 'px' }" class="cta-first"/>
     <img src="../public/flow-pc.png" alt="" width="100%">
@@ -29,12 +29,14 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted, onBeforeUnmount, defineComponent, computed } from 'vue';
+import { ref, onMounted, onBeforeUnmount, defineComponent } from 'vue';
 import ctaButton from './components/ctaButton.vue'
+import tableSection from './components/tableSection.vue'
 
 export default defineComponent({
   components: {
-    ctaButton
+    ctaButton,
+    tableSection
   },
   setup() {
     const isMobile = ref<boolean>(window.innerWidth <= 768);
