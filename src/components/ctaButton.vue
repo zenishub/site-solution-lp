@@ -36,7 +36,7 @@ export default defineComponent({
   margin-left: 2.6rem;
 }
 .caret-right{
-  position: absolute;
+  position: relative;
   left: 3rem;
 }
 </style>
