@@ -22,16 +22,19 @@
     <img src="../public/table.png" alt="" width="100%">
     <img src="../public/cta-btn-pc.png" alt="" width="100%">
     <img src="../public/flow-pc.png" alt="" width="100%">
+    <contactForm class="contact-form"/>
   </div>
 </template>
 
 <script lang="ts">
 import { ref, onMounted, onBeforeUnmount, defineComponent } from 'vue';
 import ctaButton from './components/ctaButton.vue'
+import contactForm from './components/contactForm.vue'
 
 export default defineComponent({
   components: {
-    ctaButton
+    ctaButton,
+    contactForm
   },
   setup() {
     const isMobile = ref<boolean>(window.innerWidth <= 768);
