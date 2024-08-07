@@ -1,6 +1,6 @@
 <template>
   <h2 id="contact-form-title">お問い合わせフォーム</h2>
-  <form @submit.prevent="sendMail">
+  <form>
     <div class="form-group">
       <label for="lastName">姓<span class="required">必須</span></label>
       <input
@@ -72,8 +72,8 @@
       <label for="remarks">備考</label>
       <textarea id="remarks" v-model="form.remarks" name="remarks"></textarea>
     </div>
-    <div class="submit-btn">
-      <input type="submit" value="送信" />
+    <div class="submit-btn" @click="sendMail">
+      <span>送信</span>
       <font-awesome-icon class="caret-right" icon="fa-solid fa-caret-right" />
     </div>
   </form>

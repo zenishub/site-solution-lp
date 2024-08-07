@@ -10,7 +10,7 @@
           <font-awesome-icon class="success-icon" icon="fa-solid fa-circle-check" />
         </span>
       </div>
-      <div class="message">{{ message }}</div>
+      <div v-html="formattedMessage" class="message"></div>
     </div>
   </div>
 </template>
@@ -31,6 +31,11 @@ export default {
     return {
       visible: true,
     };
+  },
+  computed: {
+    formattedMessage() {
+      return this.message.replace(/\n/g, '<br>');
+    }
   },
   methods: {
     closePopup() {
