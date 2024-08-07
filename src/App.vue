@@ -15,7 +15,7 @@
     <img src="../public/flow-sp.png" alt="" width="100%">
     <contactForm/>
   </div>
-  <div v-else>
+  <div class="pc-view" v-else>
     <img src="../public/fv-pc.png" alt="" width="100%">
     <ctaButton ref="ctaPcButtonEl" :style="{ marginTop: ctaPcMarginTop + 20 + 'px' }" class="cta-first"/>
     <img src="../public/onayami-pc.png" alt="" width="100%">
@@ -98,6 +98,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.pc-view {
+  max-width: 1000px;
+  margin: auto;
+}
+
 .cta-first {
   position: absolute;
   left: 0;

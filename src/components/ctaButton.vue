@@ -24,6 +24,7 @@ export default defineComponent({
   background-color: #FB9130;
   color: aliceblue;
   width: 50%;
+  max-width: 500px;
   display: block;
   text-align: center;
   margin: auto;
