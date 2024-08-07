@@ -1,4 +1,5 @@
 <template>
+    <h2 id="contact-form-title">お問い合わせフォーム</h2>
     <form @submit.prevent="sendMail">
         <div class="form-group">
             <label for="lastName">姓<span class="required">必須</span></label>
@@ -14,7 +15,7 @@
         </div>
         <div class="form-group">
             <label for="phone">電話番号<span class="required">必須</span></label>          
-            <input type="tel" id="phone" v-model="form.phone" name="phone" pattern="[0-9]+" placeholder="例）12312341234（ハイフンなし、半角数字のみ）" required>
+            <input type="tel" id="phone" v-model="form.phone" name="phone" pattern="[0-9]+" placeholder="例）08011112222（ハイフンなし、半角数字のみ）" required>
         </div>
         <div class="form-group">
             <label for="email">メールアドレス<span class="required">必須</span></label>          
@@ -86,6 +87,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
+#contact-form-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 3rem;
+    margin: 9rem 0 6rem;
+    color: #074199;
+}
 form {
     width: 80%;
     max-width: 900px;
