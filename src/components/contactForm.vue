@@ -164,9 +164,9 @@ export default {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              service_id: "YOUR_ID",
-              template_id: "YOUR_ID",
-              user_id: "YOUR_ID",
+              service_id: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+              template_id: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+              user_id: import.meta.env.VITE_EMAILJS_USER_ID,
               template_params: templateParams,
             }),
           }
