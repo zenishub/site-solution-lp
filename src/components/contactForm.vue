@@ -2,11 +2,11 @@
     <form @submit.prevent="sendMail">
         <div class="form-group">
             <label for="lastName">姓<span class="required">必須</span></label>
-            <input type="text" id="lastName" v-model="form.lastName" name="lastName" placeholder="例）ゼンポート" required>
+            <input type="text" id="lastName" v-model="form.lastName" name="lastName" required>
         </div>
         <div class="form-group">
             <label for="firstName">名<span class="required">必須</span></label>          
-            <input type="text" id="firstName" v-model="form.firstName" name="firstName" placeholder="例）太郎" required>
+            <input type="text" id="firstName" v-model="form.firstName" name="firstName" required>
         </div>
         <div class="form-group">
             <label for="company">企業・団体名<span class="required">必須</span></label>          
@@ -18,23 +18,21 @@
         </div>
         <div class="form-group">
             <label for="email">メールアドレス<span class="required">必須</span></label>          
-            <input type="email" id="email" v-model="form.email" name="email" placeholder="例）info.zenport@gmail.com" required>
+            <input type="email" id="email" v-model="form.email" name="email" required>
         </div>
         <div class="form-group">
             <label for="inquiry">お問い合わせ内容 <span class="required">必須</span></label>          
             <select id="inquiry" v-model="form.inquiry" name="inquiry" required>
                 <option value="" disabled selected>お問い合わせ内容を選択</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option value="option1">サービスに関するお問い合わせ</option>
+                <option value="option2">無料相談</option>
             </select>
         </div>
         <div class="form-group">
             <label for="remarks">備考</label>
             <textarea id="remarks" v-model="form.remarks" name="remarks"></textarea>
         </div>
-        <div class="submit-group">
-            
+        <div class="submit-btn">
             <input type="submit" value="送信">
             <font-awesome-icon class="caret-right" icon="fa-solid fa-caret-right" />
         </div>
@@ -90,41 +88,39 @@ export default defineComponent({
 <style scoped>
 form {
     width: 80%;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     display: flex;
 }
 
 label {
-    display: block;
     font-weight: bold;
-    width: 200px;
     position:relative;
     line-height: 4rem;
     flex:2;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #074199;
+    min-width: 220px;
+    margin-right: 24px;
 }
 
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-select,
-textarea {
-    width: 100%;
+.form-group input,
+.form-group select,
+.form-group textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     flex: 5;
-    padding: 4px;
-    font-size: 20px;
+    padding: 2px 8px;
+    font-size: 1.6rem;
 }
 
 textarea {
-    height: 100px;
+    height: 16rem;
 }
 
 .required {
@@ -132,7 +128,7 @@ textarea {
     margin: 0 5px;
     border-radius: 4px;
     background: #074199;
-    padding: 6px 8px; 
+    padding: 4px 8px; 
     text-align: center;
     font-size: 12px;
     right: 0;
@@ -141,14 +137,14 @@ textarea {
     position: absolute;
 }
 
-select option{
+select option {
     appearance: none;
     font-size: 22px;
 } 
 
-.submit-group input{
-    font-weight: bold;
-    font-size: 250%;
+.submit-btn {
+    font-weight: 600;
+    font-size: 2rem;
     background-color: #FB9130;
     color: aliceblue;
     width: 300px;
@@ -158,22 +154,16 @@ select option{
     border-radius: 100px;
     box-shadow: inset 5px 4px 4px 0 #FCB06A, /* インナーシャドウ */
                 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* ドロップシャドウ */
-    display: flex;
+    display: block;
+    position: relative;
+}
+
+.submit-btn input {
     border:0;
-    position: relative;
-    display: flex;
 }
 
-.submit-group{
-    position: relative;
-    display: flex;
-}
-
-.caret-right{
-  position: absolute;
-  left: 62%;
-  top: 40%;
-  font-size: 2.6rem;
-  color: #FFFF;
+.submit-btn .caret-right {
+    position: absolute;
+    right: 16px;
 }
 </style>
