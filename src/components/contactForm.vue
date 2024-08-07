@@ -22,9 +22,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="company"
-        >企業・団体名<span class="required">必須</span></label
-      >
+      <label for="company">企業・団体名<span class="required">必須</span></label>
       <input
         type="text"
         id="company"
@@ -47,9 +45,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="email"
-        >メールアドレス<span class="required">必須</span></label
-      >
+      <label for="email">メールアドレス<span class="required">必須</span></label>
       <input
         type="email"
         id="email"
@@ -59,9 +55,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="inquiry"
-        >お問い合わせ内容 <span class="required">必須</span></label
-      >
+      <label for="inquiry">お問い合わせ内容<span class="required">必須</span></label>
       <select id="inquiry" v-model="form.inquiry" name="inquiry" required>
         <option value="" disabled selected>お問い合わせ内容を選択</option>
         <option value="option1">サービスに関するお問い合わせ</option>
@@ -72,20 +66,24 @@
       <label for="remarks">備考</label>
       <textarea id="remarks" v-model="form.remarks" name="remarks"></textarea>
     </div>
-    <div class="submit-btn" @click="sendMail">
+    <button class="submit-btn" :disabled="!isFormValid" type="button" @click="sendMail">
       <span>送信</span>
       <font-awesome-icon class="caret-right" icon="fa-solid fa-caret-right" />
-    </div>
+    </button>
   </form>
-	<popup v-if="popupVisible" :isError="popupIsError" :message="popupMessage" @close="popupVisible = false" />
+  <popup
+    v-if="popupVisible"
+    :isError="popupIsError"
+    :message="popupMessage"
+    @close="popupVisible = false"
+  />
 </template>
 
-
 <script lang="ts">
-import popup from './popup.vue';
+import popup from "./popup.vue";
 
 export default {
-	components: {
+  components: {
     popup,
   },
   data() {
@@ -105,10 +103,22 @@ export default {
       popupMessage: "",
     };
   },
+  computed: {
+    isFormValid() {
+      return (
+        this.form.lastName &&
+        this.form.firstName &&
+        this.form.company &&
+        this.form.phone &&
+        this.form.email &&
+        this.form.inquiry
+      );
+    },
+  },
   methods: {
     validateForm() {
       this.errors = [];
-      
+
       if (!this.form.lastName) this.errors.push("姓は必須項目です。");
       if (!this.form.firstName) this.errors.push("名は必須項目です。");
       if (!this.form.email) {
@@ -118,11 +128,12 @@ export default {
       }
       if (!this.form.phone) this.errors.push("電話番号は必須項目です。");
       if (!this.form.inquiry) this.errors.push("お問い合わせ内容は必須項目です。");
-      
+
       return this.errors.length === 0;
     },
     validEmail(email) {
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+      const re =
+        /^(([^<>()\[\]\\.,;:\s@"]+(.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
       return re.test(String(email).toLowerCase());
     },
     async sendMail() {
@@ -133,7 +144,8 @@ export default {
         return;
       }
 
-      const { lastName, firstName, company, phone, email, inquiry, remarks } = this.form;
+      const { lastName, firstName, company, phone, email, inquiry, remarks } =
+        this.form;
       const templateParams = {
         fullName: `${lastName} ${firstName}`,
         company,
@@ -144,21 +156,24 @@ export default {
       };
 
       try {
-        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            service_id: "YOUR_ID",
-            template_id: "YOUR_ID",
-            user_id: "YOUR_ID",
-            template_params: templateParams,
-          }),
-        });
+        const response = await fetch(
+          "https://api.emailjs.com/api/v1.0/email/send",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              service_id: "YOUR_ID",
+              template_id: "YOUR_ID",
+              user_id: "YOUR_ID",
+              template_params: templateParams,
+            }),
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
 
         this.popupIsError = false;
@@ -166,9 +181,10 @@ export default {
         this.popupVisible = true;
         this.resetForm();
       } catch (error) {
-        console.error('Failed to send email:', error);
+        console.error("Failed to send email:", error);
         this.popupIsError = true;
-        this.popupMessage = "メールの送信に失敗しました。後ほど再度お試しください。";
+        this.popupMessage =
+          "メールの送信に失敗しました。後ほど再度お試しください。";
         this.popupVisible = true;
       }
     },
@@ -265,10 +281,14 @@ select option {
     /* インナーシャドウ */ 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* ドロップシャドウ */
   display: block;
   position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.submit-btn input {
-  border: 0;
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+	box-shadow:none;
 }
 
 .submit-btn .caret-right {
