@@ -174,4 +174,46 @@ select option {
     position: absolute;
     right: 16px;
 }
+
+@media (max-width: 768px) {
+    #contact-form-title {
+        font-size: 2.4rem;
+        margin: 6rem 0 3rem;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    .form-group {
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 6px 8px;
+        display: block;
+        width: 100%;
+    }
+
+    .required {
+        top: 1.2rem;
+    }
+
+    label {
+        position:relative;
+        line-height: 4rem;
+        font-size: 1.6rem;
+        width: 18rem;
+        min-width: 160px;
+        margin-right: 24px;
+        display: block;
+    }
+
+    .submit-btn {
+        width: 90%;
+    }
+}
 </style>

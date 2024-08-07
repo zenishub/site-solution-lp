@@ -13,6 +13,7 @@
     <img ref="ctaSpButtonBackEl" src="../public/cta-btn-sp.png" alt="" width="100%">
     <ctaButton ref="ctaSpButtonEl" :style="{ marginTop: ctaSpMarginTop + 'px' }" class="cta-first"/>
     <img src="../public/flow-sp.png" alt="" width="100%">
+    <contactForm/>
   </div>
   <div v-else>
     <img src="../public/fv-pc.png" alt="" width="100%">
@@ -25,7 +26,7 @@
     <img ref="ctaPcButtonBackEl" src="../public/cta-btn-pc.png" alt="" width="100%">
     <ctaButton ref="ctaPcButtonEl" :style="{ marginTop: ctaPcMarginTop + 'px' }" class="cta-first"/>
     <img src="../public/flow-pc.png" alt="" width="100%">
-    <contactForm class="contact-form"/>
+    <contactForm/>
   </div>
 </template>
 
