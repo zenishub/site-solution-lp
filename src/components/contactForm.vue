@@ -177,7 +177,7 @@ export default {
         }
 
         this.popupIsError = false;
-        this.popupMessage = "メールの送信に成功しました！";
+        this.popupMessage = "メールを送信しました！返信までしばらくお待ちください。";
         this.popupVisible = true;
         this.resetForm();
       } catch (error) {
