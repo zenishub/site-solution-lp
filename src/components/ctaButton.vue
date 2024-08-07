@@ -1,8 +1,10 @@
 <template>
-  <div class="cta-button">
-    <span>無料ご相談受付中！</span>
-    <font-awesome-icon class="caret-right" icon="fa-solid fa-caret-right" />
-  </div>
+  <a href="#contact-form-title">
+    <div class="cta-button">
+      <span>無料ご相談受付中！</span>
+      <font-awesome-icon class="caret-right" icon="fa-solid fa-caret-right" />
+    </div>
+  </a>
 </template>
 
 <script lang="ts">
