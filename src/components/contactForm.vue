@@ -77,14 +77,17 @@
       <font-awesome-icon class="caret-right" icon="fa-solid fa-caret-right" />
     </div>
   </form>
+	<popup v-if="popupVisible" :isError="popupIsError" :message="popupMessage" @close="popupVisible = false" />
 </template>
 
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import popup from './popup.vue';
 
-export default defineComponent({
-  name: "ChildComponent",
+export default {
+	components: {
+    popup,
+  },
   data() {
     return {
       form: {
@@ -96,21 +99,52 @@ export default defineComponent({
         inquiry: "",
         remarks: "",
       },
+      errors: [],
+      popupVisible: false,
+      popupIsError: false,
+      popupMessage: "",
     };
   },
   methods: {
+    validateForm() {
+      this.errors = [];
+      
+      if (!this.form.lastName) this.errors.push("姓は必須項目です。");
+      if (!this.form.firstName) this.errors.push("名は必須項目です。");
+      if (!this.form.email) {
+        this.errors.push("メールは必須項目です。");
+      } else if (!this.validEmail(this.form.email)) {
+        this.errors.push("有効なメールアドレスを入力してください。");
+      }
+      if (!this.form.phone) this.errors.push("電話番号は必須項目です。");
+      if (!this.form.inquiry) this.errors.push("お問い合わせ内容は必須項目です。");
+      
+      return this.errors.length === 0;
+    },
+    validEmail(email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+      return re.test(String(email).toLowerCase());
+    },
     async sendMail() {
+      if (!this.validateForm()) {
+        this.popupIsError = true;
+        this.popupMessage = this.errors.join("\n");
+        this.popupVisible = true;
+        return;
+      }
+
+      const { lastName, firstName, company, phone, email, inquiry, remarks } = this.form;
       const templateParams = {
-        fullName: `${this.form.lastName} ${this.form.firstName}`,
-        company: this.form.company,
-        phone: this.form.phone,
-        email: this.form.email,
-        inquiry: this.form.inquiry,
-        remarks: this.form.remarks,
+        fullName: `${lastName} ${firstName}`,
+        company,
+        phone,
+        email,
+        inquiry,
+        remarks,
       };
-      const response = await fetch(
-        "https://api.emailjs.com/api/v1.0/email/send",
-        {
+
+      try {
+        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -121,11 +155,36 @@ export default defineComponent({
             user_id: "YOUR_ID",
             template_params: templateParams,
           }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-      );
+
+        this.popupIsError = false;
+        this.popupMessage = "メールの送信に成功しました！";
+        this.popupVisible = true;
+        this.resetForm();
+      } catch (error) {
+        console.error('Failed to send email:', error);
+        this.popupIsError = true;
+        this.popupMessage = "メールの送信に失敗しました。後ほど再度お試しください。";
+        this.popupVisible = true;
+      }
+    },
+    resetForm() {
+      this.form = {
+        lastName: "",
+        firstName: "",
+        company: "",
+        phone: "",
+        email: "",
+        inquiry: "",
+        remarks: "",
+      };
     },
   },
-});
+};
 </script>
 
 <style scoped>

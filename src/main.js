@@ -11,9 +11,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
  ****************************************************/
 /* 利用したいアイコンをインポート（複数ある場合はカンマ区切りで登録可能） */
 import {
-  faCaretRight
+  faCaretRight,
+  faCircleExclamation,
+  faCircleCheck
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCaretRight);
+library.add(faCaretRight, faCircleExclamation, faCircleCheck);
 
 createApp(App).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
