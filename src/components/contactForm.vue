@@ -126,10 +126,18 @@ export default {
       } else if (!this.validEmail(this.form.email)) {
         this.errors.push("有効なメールアドレスを入力してください。");
       }
-      if (!this.form.phone) this.errors.push("電話番号は必須項目です。");
+      if (!this.form.phone) {
+        this.errors.push("電話番号は必須項目です。");
+      } else if (!this.validPhone(this.form.phone)) {
+        this.errors.push("電話番号は数字のみを入力してください。");
+      }
       if (!this.form.inquiry) this.errors.push("お問い合わせ内容は必須項目です。");
 
       return this.errors.length === 0;
+    },
+		validPhone(phone) {
+      const re = /^[0-9]+$/;
+      return re.test(phone);
     },
     validEmail(email) {
       const re =
