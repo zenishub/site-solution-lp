@@ -1,5 +1,5 @@
 <template>
-  <div v-if="visible" class="overlay">
+  <div class="overlay">
     <div class="popup">
       <button class="close-button" @click="closePopup">×</button>
       <div class="icon">
@@ -27,11 +27,6 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      visible: true,
-    };
-  },
   computed: {
     formattedMessage() {
       return this.message.replace(/\n/g, '<br>');
@@ -39,7 +34,7 @@ export default {
   },
   methods: {
     closePopup() {
-      this.visible = false;
+      this.$emit('close');
     },
   },
 };

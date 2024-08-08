@@ -138,7 +138,7 @@ export default {
     },
     async sendMail() {
       if (!this.validateForm()) {
-        this.popupIsError = true;
+				this.popupIsError = true;
         this.popupMessage = this.errors.join("\n");
         this.popupVisible = true;
         return;
@@ -177,7 +177,7 @@ export default {
         }
 
         this.popupIsError = false;
-        this.popupMessage = "メールを送信しました！返信までしばらくお待ちください。";
+        this.popupMessage = "メールを送信しました！\n返信までしばらくお待ちください。";
         this.popupVisible = true;
         this.resetForm();
       } catch (error) {
